@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1998
+    url: jdbc:mysql://localhost:3306/rest-template?characterEncoding=UTF-8
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: cn.maoyanluo.resttemplate.bean

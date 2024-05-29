@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.maoyanluo.resttemplate.mapper.TableMapper">
+
+    <update id="createTable" parameterType="cn.maoyanluo.resttemplate.bean.Table">
+        create table ${table.name} (
+            <foreach collection="table.columns" item="item" index="index" separator=",">
+            ${item.name} ${item.type}
+                <if test="item.primaryKey == true">primary key</if>
+                <if test="item.type == 'int'.toString()">auto_increment</if>
+            </foreach>
+        ) ENGINE=InnoDB CHARSET=utf8;
+    </update>
+
+
+    <insert id="insertTableColumn" parameterType="java.util.List">
+        insert into table_column (table_id, name, type) values
+        <foreach collection="columns" separator="," item="item">
+            (#{id}, #{item.name}, #{item.type})
+        </foreach>
+    </insert>
+</mapper>
